@@ -16,8 +16,8 @@ class Thermostat{
     return this.temperature;
   }
 
-  up(value) {
-    this.temperature += value;
+  up() {
+    this.temperature++;  
     if (this.#powerSaving) {
       if (this.temperature > this.POWER_SAVING_MAX) {
           this.temperature = this.POWER_SAVING_MAX;
@@ -29,8 +29,8 @@ class Thermostat{
   }
   };
 
-  down(value) {
-    this.temperature -= value;
+  down() {
+    this.temperature--;
     if (this.temperature < this.MIN_TEMP) {
       this.temperature = this.MIN_TEMP;
     }
