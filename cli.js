@@ -60,6 +60,5 @@ const getInput = (input) => {
         break;
     case('psm off'):
         thermostat.powerSavingOff(); 
-        break;
   };
 };
