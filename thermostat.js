@@ -1,10 +1,10 @@
 class Thermostat{
-  #powerSaving;
+  _powerSaving;
 
   constructor(){
   this.DEFAULT_TEMP = 20;
   this.temperature = this.DEFAULT_TEMP;
-  this.#powerSaving = true;
+  this._powerSaving = true;
   this.POWER_SAVING_MAX = 25;
   this.POWER_TEMP_MAX = 32;
   this.MIN_TEMP = 10;
@@ -18,15 +18,15 @@ class Thermostat{
 
   up() {
     this.temperature++;  
-    if (this.#powerSaving) {
+    if (this._powerSaving) {
       if (this.temperature > this.POWER_SAVING_MAX) {
           this.temperature = this.POWER_SAVING_MAX;
       }
-  } else {
+    } else {
       if (this.temperature > this.POWER_TEMP_MAX) {
           this.temperature = this.POWER_TEMP_MAX;
       }
-  }
+    }
   };
 
   down() {
@@ -41,11 +41,11 @@ class Thermostat{
   };
   
   powerSavingOff() {
-    this.#powerSaving = false;
+    this._powerSaving = false;
   };
 
   powerSavingOn() {
-    this.#powerSaving = true;
+    this._powerSaving = true;
   };
 
   currentEnergyUsage() {
