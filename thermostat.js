@@ -1,7 +1,9 @@
+const Weather = require('./weatherapi');
+
 class Thermostat{
   _powerSaving;
 
-  constructor(){
+  constructor(weather){
   this.DEFAULT_TEMP = 20;
   this.temperature = this.DEFAULT_TEMP;
   this._powerSaving = true;
@@ -10,7 +12,14 @@ class Thermostat{
   this.MIN_TEMP = 10;
   this.MEDIUM_ENERGY_TEMP = 18;
   this.HIGH_ENERGY_TEMP = 25;
+  this.weather = weather;
   };
+
+  setCity = (city) => {
+    this.weather.fetchWeatherData(city, (weatherData) => {
+      this.temperature = weatherData;
+    });
+  }
 
   getTemperature() {
     return this.temperature;
@@ -60,4 +69,13 @@ class Thermostat{
 
 }
 
+
 module.exports = Thermostat;
+
+// Can test out using the weatherapi in Node doing the following which will show different alues if you then 
+// do > thermostat.getTemperature();:
+// > const Weather = require('./weatherapi');
+// > const Thermostat = require('./thermostat');
+// > const weather = new Weather();
+// > const thermostat = new Thermostat(weather);
+// > thermostat.setCity('London');    OR thermostat.setCity('Madrid'); OR thermostat.setCity('Cairo');

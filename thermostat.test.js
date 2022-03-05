@@ -1,4 +1,5 @@
 const Thermostat = require('./thermostat');
+const Weather = require('./weatherapi');
 
 describe('Thermostat', () => {
 
@@ -9,8 +10,10 @@ describe('Thermostat', () => {
     // let mediumEnergyTemp;
     // let highEnergyTemp;
 
+
     beforeEach( () => {
 
+    const weather = new Weather();
     let thermostat = new Thermostat();
     defaultTemp = thermostat.DEFAULT_TEMP;
     minTemp = thermostat.MIN_TEMP;
@@ -129,5 +132,13 @@ describe('Thermostat', () => {
       expect(thermostat.getTemperature()).toEqual(powerTempMax);
     });
   });
+
+  // it("can update its temperature to the city in which it is located", () => {
+  //   const weatherDouble = { fetchWeatherData: (city, callback) => 23.8 };
+  //   const thermostat = new Thermostat(weatherDouble);
+  //   thermostat.setCity("London");
+  //   console.log(thermostat);
+  //   expect(thermostat.getTemperature()).toEqual(23.8);
+  // });
 
 });

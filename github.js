@@ -10,6 +10,24 @@
 // 
 
 const got = require('got');
+const dotenv = require('dotenv');
+dotenv.config();
+
+const apiKey = `${process.env.API_KEY}`; // paste your API key here
+const city = 'London';
+const apiUrl = `http://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`;
+
+let weatherData = null;
+
+got(apiUrl).then((response) => {
+  weatherData = JSON.parse(response.body);
+  console.log(weatherData);
+  console.log(weatherData.main.temp);
+  console.log(weatherData.weather[0].main);
+});
+
+console.log('Requesting weather data');
+
 
 //  Amend the original code below to convert the string data into a JavaScript object 
 //  so it is formatted properly, using JSON.parse:
@@ -31,14 +49,14 @@ const got = require('got');
 //   console.log(responseObject);
 // });
 
-const fetchRepoInfo = (repoName, callback) => {
-  got(`https://api.github.com/repos/${repoName}`).then((response) => {
-    const responseObject = JSON.parse(response.body);
-    callback(responseObject);
-  });
-}
+// const fetchRepoInfo = (repoName, callback) => {
+//   got(`https://api.github.com/repos/${repoName}`).then((response) => {
+//     const responseObject = JSON.parse(response.body);
+//     callback(responseObject);
+//   });
+// }
 
-// The function would then be called this way:
-fetchRepoInfo('sinatra/sinatra', (repoResponseObject) => {
-  console.log(repoResponseObject);
-});
+// // The function would then be called this way:
+// fetchRepoInfo('sinatra/sinatra', (repoResponseObject) => {
+//   console.log(repoResponseObject);
+// });
